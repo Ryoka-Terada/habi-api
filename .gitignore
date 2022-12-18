@@ -1,0 +1,21 @@
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+src/habi/vendor
+.env
+.env.backup
+.phpunit.result.cache
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+/.idea
+/.vscode
+docker/db/data/
+src/habi/composer.lock
+# 写してきたがよく分からなかったやつ
+jwks.json
+src/habi/storage/app/*/*
+*.log

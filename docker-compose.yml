@@ -1,0 +1,28 @@
+version: "3"
+services:
+  app:
+    ports:
+      - 8080:80
+    build: ./docker/app
+    container_name: habi_api
+    volumes:
+      - ./src:/var/www/html
+  db:
+    # ここのリンクから公式のmysql imageドキュメントにいける
+    image: mysql:8.0
+    container_name: habi_mysql
+    # my.cnfに書いてる内容だけどあえてここでコマンド流すのも必要っぽい？
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: habi1234
+      MYSQL_DATABASE: habi
+      # これを設定しないとルートユーザのパスワード(MYSQL_ROOT_PASSWORD: habi1234)を最初に変更しろと言われるらしい
+      MYSQL_USER: habiuser
+      MYSQL_PASSWORD: habi1234
+      TZ: Asia/Tokyo
+    volumes:
+      - ./docker/db/data:/var/lib/mysql
+      # 設定ファイル(主に日本語対応のやつ)をマウント
+      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - 3306:3306
