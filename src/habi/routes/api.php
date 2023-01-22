@@ -21,5 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
   return $request->user();
 });
 Route::get('payment', [PaymentController::class, 'index']);
-Route::get('paymentCategoryParent/{isPay}', [PaymentCategoryParentController::class, 'index']);
-Route::get('paymentCategoryChild/{isPay}/{parentId?}', [PaymentCategoryChildController::class, 'index']);
+Route::get('paymentCategoryParent', [PaymentCategoryParentController::class, 'index']);
+Route::get('paymentCategoryChild', [PaymentCategoryChildController::class, 'index']);

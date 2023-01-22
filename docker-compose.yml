@@ -7,6 +7,8 @@ services:
     container_name: habi_api
     volumes:
       - ./src:/var/www/html
+    extra_hosts:
+      - host.docker.internal:host-gateway
   db:
     # ここのリンクから公式のmysql imageドキュメントにいける
     image: mysql:8.0
