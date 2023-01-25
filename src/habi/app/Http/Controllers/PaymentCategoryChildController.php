@@ -13,10 +13,12 @@ class PaymentCategoryChildController extends Controller
     $query = DB::table('payment_category_child')
       ->join('payment_category_parent', 'payment_category_child.payment_category_parent_id', '=', 'payment_category_parent.payment_category_parent_id')
       ->select('payment_category_child.*', 'payment_category_parent.is_pay')
-      ->where('is_pay', '=', $request['is_pay'])
+      ->when($request->has('is_pay'), function ($query) use ($request) {
+        $query->where('is_pay', '=', $request->is_pay);
+      })
       ->where('payment_category_child.is_delete', '=', 0)
-      ->when($request['parent_id'], function ($query) use ($request) {
-        $query->where('payment_category_child.payment_category_parent_id', '=', $request['parent_id']);
+      ->when($request->has('parent_id'), function ($query) use ($request) {
+        $query->where('payment_category_child.payment_category_parent_id', '=', $request->parent_id);
       });
     $data = $query->get();
 

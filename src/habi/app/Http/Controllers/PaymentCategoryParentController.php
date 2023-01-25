@@ -10,7 +10,11 @@ class PaymentCategoryParentController extends Controller
 {
   public function index(PaymentCategoryParentRequest $request)
   {
-    $query = DB::table('payment_category_parent')->where('is_pay', '=', $request['is_pay'])->where('is_delete', '=', 0);
+    $query = DB::table('payment_category_parent')
+      ->when($request->has('is_pay'), function ($query) use ($request) {
+        $query->where('is_pay', '=', $request->is_pay);
+      })
+      ->where('is_delete', '=', 0);
     $data = $query->get();
 
     return $data;
