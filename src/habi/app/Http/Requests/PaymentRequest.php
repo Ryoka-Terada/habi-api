@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PaymentCategoryChildRequest extends FormRequest
+class PaymentRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class PaymentCategoryChildRequest extends FormRequest
   public function rules()
   {
     return [
-      'is_pay' => '',
-      'parent_id' => '',
+      //   'is_pay' => ''
     ];
   }
 }

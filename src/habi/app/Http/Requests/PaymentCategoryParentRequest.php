@@ -24,7 +24,7 @@ class PaymentCategoryParentRequest extends FormRequest
   public function rules()
   {
     return [
-      'is_pay' => 'required'
+      'is_pay' => ''
     ];
   }
 }
