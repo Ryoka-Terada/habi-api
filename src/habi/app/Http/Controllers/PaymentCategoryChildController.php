@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PaymentCategoryChildRequest;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * 収支カテゴリマスタ（子カテゴリ）
+ */
 class PaymentCategoryChildController extends Controller
 {
   public function index(PaymentCategoryChildRequest $request)

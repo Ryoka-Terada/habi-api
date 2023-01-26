@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\PaymentRequest;
 
+/**
+ * 収支管理API
+ */
 class PaymentController extends Controller
 {
   public function index(PaymentRequest $request)
@@ -19,6 +22,8 @@ class PaymentController extends Controller
       'is_pay'
     ])->when($request->has('is_pay'), function ($query) use ($request) {
       $query->where('is_pay', '=', $request->is_pay);
+    })->when($request->has('date_from') && $request->has('date_to'), function ($query) use ($request) {
+      $query->whereBetween('payment_date', [$request->date_from, $request->date_to]);
     });
 
     return $query->get();

@@ -17,14 +17,16 @@ class PaymentRequest extends FormRequest
   }
 
   /**
-   * Get the validation rules that apply to the request.
+   * 収支管理APIのリクエストバリデーション
    *
    * @return array
    */
   public function rules()
   {
     return [
-      //   'is_pay' => ''
+      'is_pay' => 'integer',
+      'date_from' => 'date | required_with:date_to',
+      'date_to' => 'date | required_with:date_from',
     ];
   }
 }
