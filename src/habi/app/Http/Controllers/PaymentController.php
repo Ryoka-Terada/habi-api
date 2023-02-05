@@ -14,17 +14,18 @@ class PaymentController extends Controller
   public function index(PaymentRequest $request)
   {
     $query = DB::table('payment')->select([
-      'payment_id',
-      'payment_category_parent_id',
-      'payment_category_child_id',
-      'payment_date',
-      'amount',
-      'is_pay'
+      'payment.payment_id',
+      'payment.parent_id',
+      'category_parent.category_name',
+      'payment.child_id',
+      'payment.payment_date',
+      'payment.amount',
+      'payment.is_pay'
     ])->when($request->has('is_pay'), function ($query) use ($request) {
-      $query->where('is_pay', '=', $request->is_pay);
+      $query->where('payment.is_pay', '=', $request->is_pay);
     })->when($request->has('date_from') && $request->has('date_to'), function ($query) use ($request) {
-      $query->whereBetween('payment_date', [$request->date_from, $request->date_to]);
-    });
+      $query->whereBetween('payment.payment_date', [$request->date_from, $request->date_to]);
+    })->leftJoin('category_parent', 'category_parent.parent_id', '=', 'payment.parent_id');
 
     return $query->get();
   }

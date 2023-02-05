@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
     // \App\Models\User::factory(10)->create();
     $this->call([
       PaymentSeeder::class,
-      PaymentCategoryParentSeeder::class,
-      PaymentCategoryChildSeeder::class,
+      CategoryParentSeeder::class,
+      CategoryChildSeeder::class,
       PaymentMemoSeeder::class
     ]);
   }

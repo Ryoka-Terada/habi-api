@@ -15,8 +15,8 @@ class CreatePaymentTable extends Migration
   {
     Schema::create('payment', function (Blueprint $table) {
       $table->uuid('payment_id')->primary();
-      $table->char('payment_category_parent_id', 36)->nullable();
-      $table->char('payment_category_child_id', 36)->nullable();
+      $table->char('parent_id', 36)->nullable();
+      $table->char('child_id', 36)->nullable();
       $table->date('payment_date');
       $table->decimal('amount', 6);
       $table->char('user_id', 36);
