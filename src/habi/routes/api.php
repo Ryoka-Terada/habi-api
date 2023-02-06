@@ -3,8 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\PaymentCategoryParentController;
-use App\Http\Controllers\PaymentCategoryChildController;
+use App\Http\Controllers\ParentCategoryController;
+use App\Http\Controllers\ChildCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +20,6 @@ use App\Http\Controllers\PaymentCategoryChildController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
   return $request->user();
 });
-Route::get('payment', [PaymentController::class, 'index']);
-Route::get('paymentCategoryParent', [PaymentCategoryParentController::class, 'index']);
-Route::get('paymentCategoryChild', [PaymentCategoryChildController::class, 'index']);
+Route::resource('payment', PaymentController::class);
+Route::resource('paymentCategoryParent', ParentCategoryController::class);
+Route::resource('paymentCategoryChild', ChildCategoryController::class);

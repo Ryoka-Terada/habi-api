@@ -3,33 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PaymentCategoryParentRequest;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\PaymentRequest;
 
-class PaymentController extends Controller
+class ParentCategoryController extends Controller
 {
   /**
-   * 収支一覧を取得
+   * Display a listing of the resource.
    *
    * @return \Illuminate\Http\Response
    */
-  public function index(PaymentRequest $request)
+  public function index(PaymentCategoryParentRequest $request)
   {
-    $query = DB::table('payment')->select([
-      'payment.payment_id',
-      'payment.parent_id',
-      'parent_category.category_name',
-      'payment.child_id',
-      'payment.payment_date',
-      'payment.amount',
-      'payment.is_pay'
-    ])->when($request->has('is_pay'), function ($query) use ($request) {
-      $query->where('payment.is_pay', '=', $request->is_pay);
-    })->when($request->has('date_from') && $request->has('date_to'), function ($query) use ($request) {
-      $query->whereBetween('payment.payment_date', [$request->date_from, $request->date_to]);
-    })->leftJoin('parent_category', 'parent_category.parent_id', '=', 'payment.parent_id');
+    $query = DB::table('parent_category')
+      ->when($request->has('is_pay'), function ($query) use ($request) {
+        $query->where('is_pay', '=', $request->is_pay);
+      })
+      ->where('is_delete', '=', 0);
+    $data = $query->get();
 
-    return $query->get();
+    return $data;
   }
 
   /**
@@ -39,7 +32,7 @@ class PaymentController extends Controller
    */
   public function create()
   {
-    //
+        //
   }
 
   /**
@@ -48,9 +41,9 @@ class PaymentController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(PaymentRequest $request)
+  public function store(Request $request)
   {
-    return "hello";
+        //
   }
 
   /**
