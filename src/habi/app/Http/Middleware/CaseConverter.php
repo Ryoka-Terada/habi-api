@@ -17,15 +17,16 @@ class CaseConverter
    */
   public function handle(Request $request, Closure $next)
   {
-    // フォームから来たキャメルケースをスネークケースに戻すのはこれっぽい
-    // そもそもスネークケースに戻す必要あるか？
     $form_input = $request->input();
     $request->replace($this->_recursiveConvert((array) $form_input, 'snake'));
 
     $response = $next($request);
     $response_content = json_decode($response->getContent(), true);
-    $converted_response_content_json = json_encode($this->_recursiveConvert($response_content, 'camel'));
-    $response->setContent($converted_response_content_json);
+
+    if ($response_content) {
+      $converted_response_content_json = json_encode($this->_recursiveConvert($response_content, 'camel'));
+      $response->setContent($converted_response_content_json);
+    }
 
     return $response;
   }

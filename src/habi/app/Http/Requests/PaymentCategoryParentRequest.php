@@ -2,29 +2,31 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class PaymentCategoryParentRequest extends FormRequest
+class PaymentCategoryParentRequest extends BaseRequest
 {
   /**
-   * Determine if the user is authorized to make this request.
-   *
-   * @return bool
-   */
-  public function authorize()
-  {
-    return true;
-  }
-
-  /**
-   * Get the validation rules that apply to the request.
+   * GET時のバリデーションルール
    *
    * @return array
    */
-  public function rules()
+  public function getRules()
   {
     return [
-      'is_pay' => ''
+      'is_pay' => ['integer']
+    ];
+  }
+
+  /**
+   * POST時のバリデーションルール
+   *
+   * @return array
+   */
+  public function postRules()
+  {
+    return [
+      'is_pay' => ['required', 'integer'],
+      'category_name' => ['required'],
+      'user_id' => ['required'],
     ];
   }
 }

@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PaymentCategoryParentRequest;
+use DateTime;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Throwable;
 
 class ParentCategoryController extends Controller
 {
   /**
-   * Display a listing of the resource.
+   * 親カテゴリ一覧を取得
    *
+   * @param  PaymentCategoryParentRequest  $request
    * @return \Illuminate\Http\Response
    */
   public function index(PaymentCategoryParentRequest $request)
@@ -26,24 +30,34 @@ class ParentCategoryController extends Controller
   }
 
   /**
-   * Show the form for creating a new resource.
+   * 親カテゴリを登録
    *
+   * @param  PaymentCategoryParentRequest  $request
    * @return \Illuminate\Http\Response
    */
-  public function create()
+  public function store(PaymentCategoryParentRequest $request)
   {
-        //
-  }
+    try {
+      DB::beginTransaction();
 
-  /**
-   * Store a newly created resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\Response
-   */
-  public function store(Request $request)
-  {
-        //
+      $newId = (string) Str::uuid();
+      DB::table('parent_category')->insert([
+        'parent_id' => $newId,
+        'category_name' => $request->category_name,
+        'is_pay' => $request->is_pay,
+        'user_id' => $request->user_id,
+        'is_delete' => 0,
+        'created_at' => new DateTime(),
+        'updated_at' => new DateTime(),
+      ]);
+      DB::commit();
+
+      return response(['parent_id' => $newId], 200);
+    } catch(Throwable $e) {
+      DB::rollBack();
+
+      return response(['error' => 'システムエラーが発生しました。'], 500);
+    }
   }
 
   /**
@@ -53,17 +67,6 @@ class ParentCategoryController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function show($id)
-  {
-        //
-  }
-
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function edit($id)
   {
         //
   }
