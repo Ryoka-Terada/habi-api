@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PaymentCategoryChildRequest;
+use DateTime;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Throwable;
 
 class ChildCategoryController extends Controller
 {
   /**
-   * Display a listing of the resource.
+   * 子カテゴリ一覧を取得
    *
+   * @param  PaymentCategoryChildRequest  $request
    * @return \Illuminate\Http\Response
    */
   public function index(PaymentCategoryChildRequest $request)
@@ -31,14 +35,33 @@ class ChildCategoryController extends Controller
   }
 
   /**
-   * Store a newly created resource in storage.
+   * 子カテゴリを登録
    *
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(Request $request)
+  public function store(PaymentCategoryChildRequest $request)
   {
-        //
+    try {
+      DB::beginTransaction();
+
+      $newId = (string) Str::uuid();
+      DB::table('child_category')->insert([
+        'child_id' => $newId,
+        'category_name' => $request->category_name,
+        'parent_id' => $request->parent_id,
+        'is_delete' => 0,
+        'created_at' => new DateTime(),
+        'updated_at' => new DateTime(),
+      ]);
+      DB::commit();
+
+      return response(['child_id' => $newId], 200);
+    } catch(Throwable $e) {
+      DB::rollBack();
+
+      return response(['error' => 'システムエラーが発生しました。'], 500);
+    }
   }
 
   /**
