@@ -2,31 +2,22 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class PaymentRequest extends FormRequest
+/**
+ * 収支_リクエストクラス
+ */
+class PaymentRequest extends BaseRequest
 {
   /**
-   * Determine if the user is authorized to make this request.
-   *
-   * @return bool
-   */
-  public function authorize()
-  {
-    return true;
-  }
-
-  /**
-   * 収支管理APIのリクエストバリデーション
+   * GET時のバリデーションルール
    *
    * @return array
    */
-  public function rules()
+  public function getRules()
   {
     return [
-      'is_pay' => 'integer',
-      'date_from' => 'date | required_with:date_to',
-      'date_to' => 'date | required_with:date_from',
+      'is_pay' => ['integer'],
+      'date_from' => ['date', 'required_with:date_to'],
+      'date_to' => ['date', 'required_with:date_from'],
     ];
   }
 }

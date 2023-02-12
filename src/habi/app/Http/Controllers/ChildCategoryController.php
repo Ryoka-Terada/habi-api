@@ -37,7 +37,7 @@ class ChildCategoryController extends Controller
   /**
    * 子カテゴリを登録
    *
-   * @param  \Illuminate\Http\Request  $request
+   * @param  PaymentCategoryChildRequest  $request
    * @return \Illuminate\Http\Response
    */
   public function store(PaymentCategoryChildRequest $request)

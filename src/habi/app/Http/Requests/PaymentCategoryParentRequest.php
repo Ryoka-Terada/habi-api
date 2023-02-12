@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+/**
+ * 親カテゴリ_リクエストクラス
+ */
 class PaymentCategoryParentRequest extends BaseRequest
 {
   /**
