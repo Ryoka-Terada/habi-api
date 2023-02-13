@@ -20,4 +20,21 @@ class PaymentRequest extends BaseRequest
       'date_to' => ['date', 'required_with:date_from'],
     ];
   }
+
+  /**
+   * POST時のバリデーションルール
+   *
+   * @return array
+   */
+  public function postRules()
+  {
+    return [
+      '*.payment_date' => ['required', 'date'],
+      '*.amount' => ['required', 'integer'],
+      '*.is_pay' => ['required'],
+      '*.user_id' => ['required'],
+      '*.parent_id' => [],
+      '*.child_id' => [],
+    ];
+  }
 }

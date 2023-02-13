@@ -20,6 +20,6 @@ use App\Http\Controllers\ChildCategoryController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
   return $request->user();
 });
-Route::resource('payment', PaymentController::class)->except(['create', 'edit']);
+Route::resource('payment', PaymentController::class)->except(['create', 'edit', 'update', 'show']);
 Route::resource('paymentCategoryParent', ParentCategoryController::class)->except(['create', 'edit']);
 Route::resource('paymentCategoryChild', ChildCategoryController::class)->except(['create', 'edit']);

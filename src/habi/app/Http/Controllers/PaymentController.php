@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\PaymentRequest;
+use App\Models\PaymentModel;
+use DateTime;
+use Illuminate\Support\Str;
+use Throwable;
 
 class PaymentController extends Controller
 {
@@ -33,47 +36,60 @@ class PaymentController extends Controller
   }
 
   /**
-   * Store a newly created resource in storage.
+   * 収支を登録(配列で渡されたものを全て登録)
    *
-   * @param  \Illuminate\Http\Request  $request
+   * @param  PaymentRequest $request
    * @return \Illuminate\Http\Response
    */
   public function store(PaymentRequest $request)
   {
-    return "hello";
+    $insertDatas = $request->toArray();
+
+    try {
+      DB::beginTransaction();
+
+      foreach ($insertDatas as $data) {
+        $newId = (string) Str::uuid();
+        DB::table('payment')->insert([
+          'payment_id' => $newId,
+          'payment_date' => $data['payment_date'],
+          'amount' => $data['amount'],
+          'is_pay' => $data['is_pay'],
+          'parent_id' => $data['parent_id'] ?? null,
+          'child_id' => $data['child_id'] ?? null,
+          'user_id' => $data['user_id'],
+          'created_at' => new DateTime(),
+          'updated_at' => new DateTime(),
+        ]);
+      }
+      DB::commit();
+
+      return response(['insertCount' => count($insertDatas)], 200);
+    } catch(Throwable $e) {
+      DB::rollBack();
+
+      return response(['error' => 'システムエラーが発生しました。'], 500);
+    }
   }
 
   /**
-   * Display the specified resource.
+   * 指定された日付の収支を全て削除
    *
-   * @param  int  $id
+   * @param  Date  $targetDate
    * @return \Illuminate\Http\Response
    */
-  public function show($id)
+  public function destroy($targetDate)
   {
-        //
-  }
+    try {
+      DB::beginTransaction();
+      $deleteCount = PaymentModel::where('payment_date', '=', $targetDate)->forceDelete();
+      DB::commit();
 
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function update(Request $request, $id)
-  {
-        //
-  }
+      return response(['deleteCount' => $deleteCount]);
+    } catch(Throwable $e) {
+      DB::rollBack();
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function destroy($id)
-  {
-        //
+      return response(['error' => 'システムエラーが発生しました。'], 500);
+    }
   }
 }
