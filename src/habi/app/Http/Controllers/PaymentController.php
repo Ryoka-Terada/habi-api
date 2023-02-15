@@ -36,7 +36,7 @@ class PaymentController extends Controller
   }
 
   /**
-   * 収支を登録(配列で渡されたものを全て登録)
+   * 収支を登録(配列で渡されたものを洗い替えで登録)
    *
    * @param  PaymentRequest $request
    * @return \Illuminate\Http\Response
@@ -47,7 +47,9 @@ class PaymentController extends Controller
 
     try {
       DB::beginTransaction();
-
+      // 対象の日付の収支を全て削除
+      PaymentModel::where('payment_date', '=', $insertDatas[0]['payment_date'])->forceDelete();
+      // リクエストで渡された収支情報を全て登録
       foreach ($insertDatas as $data) {
         $newId = (string) Str::uuid();
         DB::table('payment')->insert([
@@ -57,7 +59,8 @@ class PaymentController extends Controller
           'is_pay' => $data['is_pay'],
           'parent_id' => $data['parent_id'] ?? null,
           'child_id' => $data['child_id'] ?? null,
-          'user_id' => $data['user_id'],
+          // 'user_id' => $data['user_id'],
+          'user_id' => 1,
           'created_at' => new DateTime(),
           'updated_at' => new DateTime(),
         ]);
@@ -65,27 +68,6 @@ class PaymentController extends Controller
       DB::commit();
 
       return response(['insertCount' => count($insertDatas)], 200);
-    } catch(Throwable $e) {
-      DB::rollBack();
-
-      return response(['error' => 'システムエラーが発生しました。'], 500);
-    }
-  }
-
-  /**
-   * 指定された日付の収支を全て削除
-   *
-   * @param  Date  $targetDate
-   * @return \Illuminate\Http\Response
-   */
-  public function destroy($targetDate)
-  {
-    try {
-      DB::beginTransaction();
-      $deleteCount = PaymentModel::where('payment_date', '=', $targetDate)->forceDelete();
-      DB::commit();
-
-      return response(['deleteCount' => $deleteCount]);
     } catch(Throwable $e) {
       DB::rollBack();
 

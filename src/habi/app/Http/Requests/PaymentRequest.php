@@ -32,7 +32,8 @@ class PaymentRequest extends BaseRequest
       '*.payment_date' => ['required', 'date'],
       '*.amount' => ['required', 'integer'],
       '*.is_pay' => ['required'],
-      '*.user_id' => ['required'],
+      // '*.user_id' => ['required'],
+      '*.user_id' => [],
       '*.parent_id' => [],
       '*.child_id' => [],
     ];
