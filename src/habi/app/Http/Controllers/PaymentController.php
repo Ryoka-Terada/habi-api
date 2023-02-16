@@ -47,23 +47,28 @@ class PaymentController extends Controller
 
     try {
       DB::beginTransaction();
-      // 対象の日付の収支を全て削除
+      // 対象の日付の収支を全て物理削除
       PaymentModel::where('payment_date', '=', $insertDatas[0]['payment_date'])->forceDelete();
-      // リクエストで渡された収支情報を全て登録
-      foreach ($insertDatas as $data) {
-        $newId = (string) Str::uuid();
-        DB::table('payment')->insert([
-          'payment_id' => $newId,
-          'payment_date' => $data['payment_date'],
-          'amount' => $data['amount'],
-          'is_pay' => $data['is_pay'],
-          'parent_id' => $data['parent_id'] ?? null,
-          'child_id' => $data['child_id'] ?? null,
-          // 'user_id' => $data['user_id'],
-          'user_id' => 1,
-          'created_at' => new DateTime(),
-          'updated_at' => new DateTime(),
-        ]);
+
+      if (count($insertDatas) === 0 && $insertDatas[0]['amount'] === 0) {
+        // 収支リストが渡されていない場合、登録処理は行わない
+      } else {
+        // リクエストで渡された収支情報を全て登録
+        foreach ($insertDatas as $data) {
+          $newId = (string) Str::uuid();
+          DB::table('payment')->insert([
+            'payment_id' => $newId,
+            'payment_date' => $data['payment_date'],
+            'amount' => $data['amount'],
+            'is_pay' => $data['is_pay'],
+            'parent_id' => $data['parent_id'] ?? null,
+            'child_id' => $data['child_id'] ?? null,
+            // 'user_id' => $data['user_id'],
+            'user_id' => 1,
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+          ]);
+        }
       }
       DB::commit();
 
