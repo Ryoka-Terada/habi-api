@@ -38,4 +38,58 @@ class PaymentRequest extends BaseRequest
       '*.child_id' => [],
     ];
   }
+
+  /**
+   * GET時のパラメータ例
+   */
+  public function getApiParameters()
+  {
+    return [
+      'is_pay' => [
+        'description' => '収支フラグ',
+        'example' => 1
+      ],
+      'date_from' => [
+        'description' => '取得期間_開始日',
+        'example' => '2023-02-01'
+      ],
+      'date_to' => [
+        'description' => '取得期間_終了日',
+        'example' => '2023-02-28'
+      ],
+    ];
+  }
+
+  /**
+   * POST時のパラメータ例
+   */
+  public function postApiParameters()
+  {
+    return [
+      '*.payment_date' => [
+        'description' => '収支登録日',
+        'example' => '2023-02-20'
+      ],
+      '*.amount' => [
+        'description' => '合計金額',
+        'example' => 1200
+      ],
+      '*.is_pay' => [
+        'description' => '収支フラグ',
+        'example' => 1
+      ],
+      '*.user_id' => [
+        'description' => 'ユーザID',
+        'example' => 1
+      ],
+      '*.parent_id' => [
+        'description' => '親カテゴリID',
+        'example' => '1'
+      ],
+      '*.child_id' => [
+        'description' => '子カテゴリID',
+        'example' => '1'
+      ]
+    ];
+  }
 }

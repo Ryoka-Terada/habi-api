@@ -61,18 +61,7 @@ class ParentCategoryController extends Controller
   }
 
   /**
-   * Display the specified resource.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function show($id)
-  {
-        //
-  }
-
-  /**
-   * Update the specified resource in storage.
+   * 親カテゴリ更新API（未作成）
    *
    * @param  \Illuminate\Http\Request  $request
    * @param  int  $id
@@ -84,7 +73,7 @@ class ParentCategoryController extends Controller
   }
 
   /**
-   * Remove the specified resource from storage.
+   * 親カテゴリ削除API（未作成）
    *
    * @param  int  $id
    * @return \Illuminate\Http\Response

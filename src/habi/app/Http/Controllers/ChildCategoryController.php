@@ -65,18 +65,7 @@ class ChildCategoryController extends Controller
   }
 
   /**
-   * Display the specified resource.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function show($id)
-  {
-        //
-  }
-
-  /**
-   * Update the specified resource in storage.
+   * 子カテゴリ更新API（未作成）
    *
    * @param  \Illuminate\Http\Request  $request
    * @param  int  $id
@@ -88,7 +77,7 @@ class ChildCategoryController extends Controller
   }
 
   /**
-   * Remove the specified resource from storage.
+   * 子カテゴリ削除API（未作成）
    *
    * @param  int  $id
    * @return \Illuminate\Http\Response

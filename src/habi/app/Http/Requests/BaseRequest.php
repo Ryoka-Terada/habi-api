@@ -25,7 +25,7 @@ class BaseRequest extends FormRequest
    */
   public function rules()
   {
-    switch (request()->method()) {
+    switch ($this->server('REQUEST_METHOD')) {
       case 'GET':
         return $this->getRules();
 
@@ -38,6 +38,29 @@ class BaseRequest extends FormRequest
 
       case 'PUT':
         return $this->putRules();
+
+        break;
+    }
+  }
+
+  /**
+   * API設計書に反映するリクエストボディを定義
+   */
+  public function bodyParameters()
+  {
+    switch ($this->server('REQUEST_METHOD')) {
+      case 'GET':
+        return $this->getApiParameters();
+
+        break;
+
+      case 'POST':
+        return $this->postApiParameters();
+
+        break;
+
+      case 'PUT':
+        return $this->putApiParameters();
 
         break;
     }

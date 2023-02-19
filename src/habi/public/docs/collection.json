@@ -1,0 +1,493 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost:8080"
+        }
+    ],
+    "info": {
+        "name": "\u5bb6\u8a08\u7c3f\u30a2\u30d7\u30eahabi",
+        "_postman_id": "89b20890-6b98-436c-98dd-afb7743a85a2",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "\u53ce\u652f\u4e00\u89a7\u3092\u53d6\u5f97",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/payment",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/payment"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"is_pay\":1,\"date_from\":\"2023-02-01\",\"date_to\":\"2023-02-28\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "[{\"paymentId\":\"0ddc8f57-194c-4ed6-8857-6a1bde8e221b\",\"parentId\":\"2\",\"categoryName\":\"\\u8da3\\u5473\",\"childId\":null,\"paymentDate\":\"2023-02-16\",\"amount\":\"20.00\",\"isPay\":1},{\"paymentId\":\"16952f5e-3f86-4b46-998c-6eb5f8b408fe\",\"parentId\":\"2\",\"categoryName\":\"\\u8da3\\u5473\",\"childId\":\"4\",\"paymentDate\":\"2023-02-10\",\"amount\":\"1000.00\",\"isPay\":1},{\"paymentId\":\"4\",\"parentId\":\"2\",\"categoryName\":\"\\u8da3\\u5473\",\"childId\":\"4\",\"paymentDate\":\"2023-02-21\",\"amount\":\"4200.00\",\"isPay\":1},{\"paymentId\":\"445fb39d-f03d-4c35-ae7b-18f9d7b4483b\",\"parentId\":\"1\",\"categoryName\":\"\\u98df\\u8cbb\",\"childId\":null,\"paymentDate\":\"2023-02-25\",\"amount\":\"1000.00\",\"isPay\":1},{\"paymentId\":\"77e7fe80-356c-47a0-857f-ee5e3f15d275\",\"parentId\":\"3\",\"categoryName\":\"\\u65e5\\u7528\\u54c1\",\"childId\":null,\"paymentDate\":\"2023-02-08\",\"amount\":\"300.00\",\"isPay\":1},{\"paymentId\":\"964c5520-37b7-4dd5-8c2c-90e9eaf6e6d4\",\"parentId\":\"1\",\"categoryName\":\"\\u98df\\u8cbb\",\"childId\":\"2\",\"paymentDate\":\"2023-02-02\",\"amount\":\"1200.00\",\"isPay\":1},{\"paymentId\":\"9f0071f5-00d2-431d-8a4b-62bc6316d454\",\"parentId\":\"1\",\"categoryName\":\"\\u98df\\u8cbb\",\"childId\":\"1\",\"paymentDate\":\"2023-02-08\",\"amount\":\"100.00\",\"isPay\":1},{\"paymentId\":\"c6344677-c5f8-4398-b910-b7ec5835400b\",\"parentId\":\"2\",\"categoryName\":\"\\u8da3\\u5473\",\"childId\":null,\"paymentDate\":\"2023-02-16\",\"amount\":\"400.00\",\"isPay\":1},{\"paymentId\":\"f9c5d861-1dd0-46ce-8519-73e790b4d5d3\",\"parentId\":null,\"categoryName\":null,\"childId\":null,\"paymentDate\":\"2023-02-14\",\"amount\":\"666.00\",\"isPay\":1}]",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "\u53ce\u652f\u3092\u767b\u9332(\u914d\u5217\u3067\u6e21\u3055\u308c\u305f\u3082\u306e\u3092\u6d17\u3044\u66ff\u3048\u3067\u767b\u9332)",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/payment",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/payment"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "58"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 500,
+                            "body": "{\"error\":\"\\u30b7\\u30b9\\u30c6\\u30e0\\u30a8\\u30e9\\u30fc\\u304c\\u767a\\u751f\\u3057\\u307e\\u3057\\u305f\\u3002\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "\u89aa\u30ab\u30c6\u30b4\u30ea\u4e00\u89a7\u3092\u53d6\u5f97",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/paymentCategoryParent",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/paymentCategoryParent"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"is_pay\":1}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "57"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "[{\"parentId\":\"1\",\"categoryName\":\"\\u98df\\u8cbb\",\"isPay\":1,\"userId\":\"1\",\"isDelete\":0,\"createdAt\":\"2023-02-06 16:48:28\",\"updatedAt\":\"2023-02-06 16:48:28\"},{\"parentId\":\"2\",\"categoryName\":\"\\u8da3\\u5473\",\"isPay\":1,\"userId\":\"1\",\"isDelete\":0,\"createdAt\":\"2023-02-06 16:48:28\",\"updatedAt\":\"2023-02-06 16:48:28\"},{\"parentId\":\"3\",\"categoryName\":\"\\u65e5\\u7528\\u54c1\",\"isPay\":1,\"userId\":\"1\",\"isDelete\":0,\"createdAt\":\"2023-02-06 16:48:28\",\"updatedAt\":\"2023-02-06 16:48:28\"},{\"parentId\":\"61503315-7d7d-4a69-865d-903e0ca2d081\",\"categoryName\":\"\\u65b0\\u898f\\u89aa\\u30ab\\u30c6\\u30b4\\u30ea\",\"isPay\":1,\"userId\":\"1\",\"isDelete\":0,\"createdAt\":\"2023-02-08 15:43:59\",\"updatedAt\":\"2023-02-08 15:43:59\"},{\"parentId\":\"721769c8-d686-4d2b-a015-7299b29cd805\",\"categoryName\":\"\\u65b0\\u898f\\u89aa\\u30ab\\u30c6\\u30b4\\u30ea\",\"isPay\":1,\"userId\":\"1\",\"isDelete\":0,\"createdAt\":\"2023-02-08 18:56:58\",\"updatedAt\":\"2023-02-08 18:56:58\"},{\"parentId\":\"7b4a43aa-ea38-4cc0-b895-4dca9168a008\",\"categoryName\":\"\\u65b0\\u898f\\u89aa\\u30ab\\u30c6\\u30b4\\u30ea\",\"isPay\":1,\"userId\":\"1\",\"isDelete\":0,\"createdAt\":\"2023-02-08 15:41:39\",\"updatedAt\":\"2023-02-08 15:41:39\"},{\"parentId\":\"977525b8-2d9d-47a5-8f35-66a2fae66c8d\",\"categoryName\":\"\\u65b0\\u898f\\u89aa\\u30ab\\u30c6\\u30b4\\u30ea\",\"isPay\":1,\"userId\":\"1\",\"isDelete\":0,\"createdAt\":null,\"updatedAt\":null}]",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "\u89aa\u30ab\u30c6\u30b4\u30ea\u3092\u767b\u9332",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/paymentCategoryParent",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/paymentCategoryParent"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"is_pay\":1,\"category_name\":\"\u98df\u8cbb\",\"user_id\":1}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "56"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"parentId\":\"85f881ea-4785-48ec-af80-ea344aa3148d\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "\u89aa\u30ab\u30c6\u30b4\u30ea\u66f4\u65b0API\uff08\u672a\u4f5c\u6210\uff09",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/paymentCategoryParent\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/paymentCategoryParent\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "illum",
+                                    "description": "The ID of the paymentCategoryParent."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "\u89aa\u30ab\u30c6\u30b4\u30ea\u524a\u9664API\uff08\u672a\u4f5c\u6210\uff09",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/paymentCategoryParent\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/paymentCategoryParent\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "quas",
+                                    "description": "The ID of the paymentCategoryParent."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "\u5b50\u30ab\u30c6\u30b4\u30ea\u4e00\u89a7\u3092\u53d6\u5f97",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/paymentCategoryChild",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/paymentCategoryChild"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"is_pay\":1,\"parent_id\":1}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "55"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "[{\"childId\":\"1\",\"categoryName\":\"\\u98df\\u6750\",\"parentId\":\"1\",\"isDelete\":0,\"createdAt\":\"2023-02-06 16:48:28\",\"updatedAt\":\"2023-02-06 16:48:28\",\"isPay\":1},{\"childId\":\"2\",\"categoryName\":\"\\u5916\\u98df\",\"parentId\":\"1\",\"isDelete\":0,\"createdAt\":\"2023-02-06 16:48:28\",\"updatedAt\":\"2023-02-06 16:48:28\",\"isPay\":1},{\"childId\":\"3\",\"categoryName\":\"\\u304a\\u3084\\u3064\",\"parentId\":\"1\",\"isDelete\":0,\"createdAt\":\"2023-02-06 16:48:28\",\"updatedAt\":\"2023-02-06 16:48:28\",\"isPay\":1}]",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "\u5b50\u30ab\u30c6\u30b4\u30ea\u3092\u767b\u9332",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/paymentCategoryChild",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/paymentCategoryChild"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"category_name\":\"\u30e9\u30f3\u30c1\u4ee3\",\"parent_id\":1}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "54"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"childId\":\"27039e6e-ad1a-438e-8743-e3b6f12d9024\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "\u5b50\u30ab\u30c6\u30b4\u30ea\u66f4\u65b0API\uff08\u672a\u4f5c\u6210\uff09",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/paymentCategoryChild\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/paymentCategoryChild\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "optio",
+                                    "description": "The ID of the paymentCategoryChild."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "\u5b50\u30ab\u30c6\u30b4\u30ea\u524a\u9664API\uff08\u672a\u4f5c\u6210\uff09",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/paymentCategoryChild\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/paymentCategoryChild\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "iure",
+                                    "description": "The ID of the paymentCategoryChild."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}

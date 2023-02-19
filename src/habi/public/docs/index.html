@@ -1,0 +1,1672 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>家計簿アプリhabi</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .bash-example code { display: none; }
+                    body .content .javascript-example code { display: none; }
+            </style>
+
+    <script>
+        var baseUrl = "http://localhost:8080";
+        var useCsrf = Boolean();
+        var csrfUrl = "/sanctum/csrf-cookie";
+    </script>
+    <script src="../docs/js/tryitout-4.16.0.js"></script>
+
+    <script src="../docs/js/theme-default-4.16.0.js"></script>
+
+</head>
+
+<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image"/>
+    </span>
+</a>
+<div class="tocify-wrapper">
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                    <ul id="tocify-header-introduction" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="introduction">
+                    <a href="#introduction">Introduction</a>
+                </li>
+                            </ul>
+                    <ul id="tocify-header-authenticating-requests" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="authenticating-requests">
+                    <a href="#authenticating-requests">Authenticating requests</a>
+                </li>
+                            </ul>
+                    <ul id="tocify-header-endpoints" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="endpoints">
+                    <a href="#endpoints">Endpoints</a>
+                </li>
+                                    <ul id="tocify-subheader-endpoints" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-payment">
+                                <a href="#endpoints-GETapi-payment">収支一覧を取得</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-payment">
+                                <a href="#endpoints-POSTapi-payment">収支を登録(配列で渡されたものを洗い替えで登録)</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-paymentCategoryParent">
+                                <a href="#endpoints-GETapi-paymentCategoryParent">親カテゴリ一覧を取得</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-paymentCategoryParent">
+                                <a href="#endpoints-POSTapi-paymentCategoryParent">親カテゴリを登録</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-paymentCategoryParent--id-">
+                                <a href="#endpoints-PUTapi-paymentCategoryParent--id-">親カテゴリ更新API（未作成）</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-paymentCategoryParent--id-">
+                                <a href="#endpoints-DELETEapi-paymentCategoryParent--id-">親カテゴリ削除API（未作成）</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-paymentCategoryChild">
+                                <a href="#endpoints-GETapi-paymentCategoryChild">子カテゴリ一覧を取得</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-paymentCategoryChild">
+                                <a href="#endpoints-POSTapi-paymentCategoryChild">子カテゴリを登録</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-paymentCategoryChild--id-">
+                                <a href="#endpoints-PUTapi-paymentCategoryChild--id-">子カテゴリ更新API（未作成）</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-paymentCategoryChild--id-">
+                                <a href="#endpoints-DELETEapi-paymentCategoryChild--id-">子カテゴリ削除API（未作成）</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+            </div>
+
+    <ul class="toc-footer" id="toc-footer">
+                    <li style="padding-bottom: 5px;"><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li style="padding-bottom: 5px;"><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+    </ul>
+
+    <ul class="toc-footer" id="last-updated">
+        <li>Last updated: February 19, 2023</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<aside>
+    <strong>Base URL</strong>: <code>http://localhost:8080</code>
+</aside>
+<p>家計簿アプリhabiのAPI設計書です。これはScribeで生成しています。</p>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>This API is not authenticated.</p>
+
+        <h1 id="endpoints">Endpoints</h1>
+
+    
+
+                                <h2 id="endpoints-GETapi-payment">収支一覧を取得</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-payment">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8080/api/payment" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"is_pay\": 1,
+    \"date_from\": \"2023-02-01\",
+    \"date_to\": \"2023-02-28\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8080/api/payment"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "is_pay": 1,
+    "date_from": "2023-02-01",
+    "date_to": "2023-02-28"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-payment">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 59
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">[
+    {
+        &quot;paymentId&quot;: &quot;0ddc8f57-194c-4ed6-8857-6a1bde8e221b&quot;,
+        &quot;parentId&quot;: &quot;2&quot;,
+        &quot;categoryName&quot;: &quot;趣味&quot;,
+        &quot;childId&quot;: null,
+        &quot;paymentDate&quot;: &quot;2023-02-16&quot;,
+        &quot;amount&quot;: &quot;20.00&quot;,
+        &quot;isPay&quot;: 1
+    },
+    {
+        &quot;paymentId&quot;: &quot;16952f5e-3f86-4b46-998c-6eb5f8b408fe&quot;,
+        &quot;parentId&quot;: &quot;2&quot;,
+        &quot;categoryName&quot;: &quot;趣味&quot;,
+        &quot;childId&quot;: &quot;4&quot;,
+        &quot;paymentDate&quot;: &quot;2023-02-10&quot;,
+        &quot;amount&quot;: &quot;1000.00&quot;,
+        &quot;isPay&quot;: 1
+    },
+    {
+        &quot;paymentId&quot;: &quot;4&quot;,
+        &quot;parentId&quot;: &quot;2&quot;,
+        &quot;categoryName&quot;: &quot;趣味&quot;,
+        &quot;childId&quot;: &quot;4&quot;,
+        &quot;paymentDate&quot;: &quot;2023-02-21&quot;,
+        &quot;amount&quot;: &quot;4200.00&quot;,
+        &quot;isPay&quot;: 1
+    },
+    {
+        &quot;paymentId&quot;: &quot;445fb39d-f03d-4c35-ae7b-18f9d7b4483b&quot;,
+        &quot;parentId&quot;: &quot;1&quot;,
+        &quot;categoryName&quot;: &quot;食費&quot;,
+        &quot;childId&quot;: null,
+        &quot;paymentDate&quot;: &quot;2023-02-25&quot;,
+        &quot;amount&quot;: &quot;1000.00&quot;,
+        &quot;isPay&quot;: 1
+    },
+    {
+        &quot;paymentId&quot;: &quot;77e7fe80-356c-47a0-857f-ee5e3f15d275&quot;,
+        &quot;parentId&quot;: &quot;3&quot;,
+        &quot;categoryName&quot;: &quot;日用品&quot;,
+        &quot;childId&quot;: null,
+        &quot;paymentDate&quot;: &quot;2023-02-08&quot;,
+        &quot;amount&quot;: &quot;300.00&quot;,
+        &quot;isPay&quot;: 1
+    },
+    {
+        &quot;paymentId&quot;: &quot;964c5520-37b7-4dd5-8c2c-90e9eaf6e6d4&quot;,
+        &quot;parentId&quot;: &quot;1&quot;,
+        &quot;categoryName&quot;: &quot;食費&quot;,
+        &quot;childId&quot;: &quot;2&quot;,
+        &quot;paymentDate&quot;: &quot;2023-02-02&quot;,
+        &quot;amount&quot;: &quot;1200.00&quot;,
+        &quot;isPay&quot;: 1
+    },
+    {
+        &quot;paymentId&quot;: &quot;9f0071f5-00d2-431d-8a4b-62bc6316d454&quot;,
+        &quot;parentId&quot;: &quot;1&quot;,
+        &quot;categoryName&quot;: &quot;食費&quot;,
+        &quot;childId&quot;: &quot;1&quot;,
+        &quot;paymentDate&quot;: &quot;2023-02-08&quot;,
+        &quot;amount&quot;: &quot;100.00&quot;,
+        &quot;isPay&quot;: 1
+    },
+    {
+        &quot;paymentId&quot;: &quot;c6344677-c5f8-4398-b910-b7ec5835400b&quot;,
+        &quot;parentId&quot;: &quot;2&quot;,
+        &quot;categoryName&quot;: &quot;趣味&quot;,
+        &quot;childId&quot;: null,
+        &quot;paymentDate&quot;: &quot;2023-02-16&quot;,
+        &quot;amount&quot;: &quot;400.00&quot;,
+        &quot;isPay&quot;: 1
+    },
+    {
+        &quot;paymentId&quot;: &quot;f9c5d861-1dd0-46ce-8519-73e790b4d5d3&quot;,
+        &quot;parentId&quot;: null,
+        &quot;categoryName&quot;: null,
+        &quot;childId&quot;: null,
+        &quot;paymentDate&quot;: &quot;2023-02-14&quot;,
+        &quot;amount&quot;: &quot;666.00&quot;,
+        &quot;isPay&quot;: 1
+    }
+]</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-payment" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-payment"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-payment" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-payment" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-payment"></code></pre>
+</span>
+<form id="form-GETapi-payment" data-method="GET"
+      data-path="api/payment"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-payment', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-payment"
+                    onclick="tryItOut('GETapi-payment');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-payment"
+                    onclick="cancelTryOut('GETapi-payment');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-payment" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/payment</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="GETapi-payment"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="GETapi-payment"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>is_pay</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               name="is_pay"                data-endpoint="GETapi-payment"
+               value="1"
+               data-component="body">
+    <br>
+<p>収支フラグ. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>date_from</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+               name="date_from"                data-endpoint="GETapi-payment"
+               value="2023-02-01"
+               data-component="body">
+    <br>
+<p>取得期間_開始日. Must be a valid date. This field is required when <code>date_to</code> is present. Example: <code>2023-02-01</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>date_to</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+               name="date_to"                data-endpoint="GETapi-payment"
+               value="2023-02-28"
+               data-component="body">
+    <br>
+<p>取得期間_終了日. Must be a valid date. This field is required when <code>date_from</code> is present. Example: <code>2023-02-28</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-POSTapi-payment">収支を登録(配列で渡されたものを洗い替えで登録)</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-payment">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8080/api/payment" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8080/api/payment"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-payment">
+            <blockquote>
+            <p>Example response (500):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 58
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: &quot;システムエラーが発生しました。&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-payment" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-payment"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-payment" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-payment" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-payment"></code></pre>
+</span>
+<form id="form-POSTapi-payment" data-method="POST"
+      data-path="api/payment"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-payment', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-payment"
+                    onclick="tryItOut('POSTapi-payment');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-payment"
+                    onclick="cancelTryOut('POSTapi-payment');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-payment" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/payment</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="POSTapi-payment"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="POSTapi-payment"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-GETapi-paymentCategoryParent">親カテゴリ一覧を取得</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-paymentCategoryParent">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8080/api/paymentCategoryParent" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"is_pay\": 1
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8080/api/paymentCategoryParent"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "is_pay": 1
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-paymentCategoryParent">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 57
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">[
+    {
+        &quot;parentId&quot;: &quot;1&quot;,
+        &quot;categoryName&quot;: &quot;食費&quot;,
+        &quot;isPay&quot;: 1,
+        &quot;userId&quot;: &quot;1&quot;,
+        &quot;isDelete&quot;: 0,
+        &quot;createdAt&quot;: &quot;2023-02-06 16:48:28&quot;,
+        &quot;updatedAt&quot;: &quot;2023-02-06 16:48:28&quot;
+    },
+    {
+        &quot;parentId&quot;: &quot;2&quot;,
+        &quot;categoryName&quot;: &quot;趣味&quot;,
+        &quot;isPay&quot;: 1,
+        &quot;userId&quot;: &quot;1&quot;,
+        &quot;isDelete&quot;: 0,
+        &quot;createdAt&quot;: &quot;2023-02-06 16:48:28&quot;,
+        &quot;updatedAt&quot;: &quot;2023-02-06 16:48:28&quot;
+    },
+    {
+        &quot;parentId&quot;: &quot;3&quot;,
+        &quot;categoryName&quot;: &quot;日用品&quot;,
+        &quot;isPay&quot;: 1,
+        &quot;userId&quot;: &quot;1&quot;,
+        &quot;isDelete&quot;: 0,
+        &quot;createdAt&quot;: &quot;2023-02-06 16:48:28&quot;,
+        &quot;updatedAt&quot;: &quot;2023-02-06 16:48:28&quot;
+    },
+    {
+        &quot;parentId&quot;: &quot;61503315-7d7d-4a69-865d-903e0ca2d081&quot;,
+        &quot;categoryName&quot;: &quot;新規親カテゴリ&quot;,
+        &quot;isPay&quot;: 1,
+        &quot;userId&quot;: &quot;1&quot;,
+        &quot;isDelete&quot;: 0,
+        &quot;createdAt&quot;: &quot;2023-02-08 15:43:59&quot;,
+        &quot;updatedAt&quot;: &quot;2023-02-08 15:43:59&quot;
+    },
+    {
+        &quot;parentId&quot;: &quot;721769c8-d686-4d2b-a015-7299b29cd805&quot;,
+        &quot;categoryName&quot;: &quot;新規親カテゴリ&quot;,
+        &quot;isPay&quot;: 1,
+        &quot;userId&quot;: &quot;1&quot;,
+        &quot;isDelete&quot;: 0,
+        &quot;createdAt&quot;: &quot;2023-02-08 18:56:58&quot;,
+        &quot;updatedAt&quot;: &quot;2023-02-08 18:56:58&quot;
+    },
+    {
+        &quot;parentId&quot;: &quot;7b4a43aa-ea38-4cc0-b895-4dca9168a008&quot;,
+        &quot;categoryName&quot;: &quot;新規親カテゴリ&quot;,
+        &quot;isPay&quot;: 1,
+        &quot;userId&quot;: &quot;1&quot;,
+        &quot;isDelete&quot;: 0,
+        &quot;createdAt&quot;: &quot;2023-02-08 15:41:39&quot;,
+        &quot;updatedAt&quot;: &quot;2023-02-08 15:41:39&quot;
+    },
+    {
+        &quot;parentId&quot;: &quot;977525b8-2d9d-47a5-8f35-66a2fae66c8d&quot;,
+        &quot;categoryName&quot;: &quot;新規親カテゴリ&quot;,
+        &quot;isPay&quot;: 1,
+        &quot;userId&quot;: &quot;1&quot;,
+        &quot;isDelete&quot;: 0,
+        &quot;createdAt&quot;: null,
+        &quot;updatedAt&quot;: null
+    }
+]</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-paymentCategoryParent" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-paymentCategoryParent"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-paymentCategoryParent" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-paymentCategoryParent" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-paymentCategoryParent"></code></pre>
+</span>
+<form id="form-GETapi-paymentCategoryParent" data-method="GET"
+      data-path="api/paymentCategoryParent"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-paymentCategoryParent', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-paymentCategoryParent"
+                    onclick="tryItOut('GETapi-paymentCategoryParent');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-paymentCategoryParent"
+                    onclick="cancelTryOut('GETapi-paymentCategoryParent');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-paymentCategoryParent" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/paymentCategoryParent</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="GETapi-paymentCategoryParent"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="GETapi-paymentCategoryParent"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>is_pay</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               name="is_pay"                data-endpoint="GETapi-paymentCategoryParent"
+               value="1"
+               data-component="body">
+    <br>
+<p>収支フラグ. Example: <code>1</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-POSTapi-paymentCategoryParent">親カテゴリを登録</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-paymentCategoryParent">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8080/api/paymentCategoryParent" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"is_pay\": 1,
+    \"category_name\": \"食費\",
+    \"user_id\": 1
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8080/api/paymentCategoryParent"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "is_pay": 1,
+    "category_name": "食費",
+    "user_id": 1
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-paymentCategoryParent">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 56
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;parentId&quot;: &quot;85f881ea-4785-48ec-af80-ea344aa3148d&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-paymentCategoryParent" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-paymentCategoryParent"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-paymentCategoryParent" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-paymentCategoryParent" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-paymentCategoryParent"></code></pre>
+</span>
+<form id="form-POSTapi-paymentCategoryParent" data-method="POST"
+      data-path="api/paymentCategoryParent"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-paymentCategoryParent', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-paymentCategoryParent"
+                    onclick="tryItOut('POSTapi-paymentCategoryParent');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-paymentCategoryParent"
+                    onclick="cancelTryOut('POSTapi-paymentCategoryParent');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-paymentCategoryParent" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/paymentCategoryParent</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="POSTapi-paymentCategoryParent"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="POSTapi-paymentCategoryParent"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>is_pay</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               name="is_pay"                data-endpoint="POSTapi-paymentCategoryParent"
+               value="1"
+               data-component="body">
+    <br>
+<p>収支フラグ. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>category_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="category_name"                data-endpoint="POSTapi-paymentCategoryParent"
+               value="食費"
+               data-component="body">
+    <br>
+<p>親カテゴリ名. Example: <code>食費</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>user_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="user_id"                data-endpoint="POSTapi-paymentCategoryParent"
+               value="1"
+               data-component="body">
+    <br>
+<p>ユーザID. Example: <code>1</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-PUTapi-paymentCategoryParent--id-">親カテゴリ更新API（未作成）</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-paymentCategoryParent--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8080/api/paymentCategoryParent/illum" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8080/api/paymentCategoryParent/illum"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-paymentCategoryParent--id-">
+</span>
+<span id="execution-results-PUTapi-paymentCategoryParent--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-paymentCategoryParent--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-paymentCategoryParent--id-" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-paymentCategoryParent--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-paymentCategoryParent--id-"></code></pre>
+</span>
+<form id="form-PUTapi-paymentCategoryParent--id-" data-method="PUT"
+      data-path="api/paymentCategoryParent/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-paymentCategoryParent--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-paymentCategoryParent--id-"
+                    onclick="tryItOut('PUTapi-paymentCategoryParent--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-paymentCategoryParent--id-"
+                    onclick="cancelTryOut('PUTapi-paymentCategoryParent--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-paymentCategoryParent--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/paymentCategoryParent/{id}</code></b>
+        </p>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/paymentCategoryParent/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="PUTapi-paymentCategoryParent--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="PUTapi-paymentCategoryParent--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="id"                data-endpoint="PUTapi-paymentCategoryParent--id-"
+               value="illum"
+               data-component="url">
+    <br>
+<p>The ID of the paymentCategoryParent. Example: <code>illum</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-DELETEapi-paymentCategoryParent--id-">親カテゴリ削除API（未作成）</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-paymentCategoryParent--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:8080/api/paymentCategoryParent/quas" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8080/api/paymentCategoryParent/quas"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-paymentCategoryParent--id-">
+</span>
+<span id="execution-results-DELETEapi-paymentCategoryParent--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-paymentCategoryParent--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-paymentCategoryParent--id-" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-paymentCategoryParent--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-paymentCategoryParent--id-"></code></pre>
+</span>
+<form id="form-DELETEapi-paymentCategoryParent--id-" data-method="DELETE"
+      data-path="api/paymentCategoryParent/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-paymentCategoryParent--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-paymentCategoryParent--id-"
+                    onclick="tryItOut('DELETEapi-paymentCategoryParent--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-paymentCategoryParent--id-"
+                    onclick="cancelTryOut('DELETEapi-paymentCategoryParent--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-paymentCategoryParent--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/paymentCategoryParent/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="DELETEapi-paymentCategoryParent--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="DELETEapi-paymentCategoryParent--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="id"                data-endpoint="DELETEapi-paymentCategoryParent--id-"
+               value="quas"
+               data-component="url">
+    <br>
+<p>The ID of the paymentCategoryParent. Example: <code>quas</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-paymentCategoryChild">子カテゴリ一覧を取得</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-paymentCategoryChild">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8080/api/paymentCategoryChild" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"is_pay\": 1,
+    \"parent_id\": 1
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8080/api/paymentCategoryChild"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "is_pay": 1,
+    "parent_id": 1
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-paymentCategoryChild">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 55
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">[
+    {
+        &quot;childId&quot;: &quot;1&quot;,
+        &quot;categoryName&quot;: &quot;食材&quot;,
+        &quot;parentId&quot;: &quot;1&quot;,
+        &quot;isDelete&quot;: 0,
+        &quot;createdAt&quot;: &quot;2023-02-06 16:48:28&quot;,
+        &quot;updatedAt&quot;: &quot;2023-02-06 16:48:28&quot;,
+        &quot;isPay&quot;: 1
+    },
+    {
+        &quot;childId&quot;: &quot;2&quot;,
+        &quot;categoryName&quot;: &quot;外食&quot;,
+        &quot;parentId&quot;: &quot;1&quot;,
+        &quot;isDelete&quot;: 0,
+        &quot;createdAt&quot;: &quot;2023-02-06 16:48:28&quot;,
+        &quot;updatedAt&quot;: &quot;2023-02-06 16:48:28&quot;,
+        &quot;isPay&quot;: 1
+    },
+    {
+        &quot;childId&quot;: &quot;3&quot;,
+        &quot;categoryName&quot;: &quot;おやつ&quot;,
+        &quot;parentId&quot;: &quot;1&quot;,
+        &quot;isDelete&quot;: 0,
+        &quot;createdAt&quot;: &quot;2023-02-06 16:48:28&quot;,
+        &quot;updatedAt&quot;: &quot;2023-02-06 16:48:28&quot;,
+        &quot;isPay&quot;: 1
+    }
+]</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-paymentCategoryChild" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-paymentCategoryChild"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-paymentCategoryChild" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-paymentCategoryChild" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-paymentCategoryChild"></code></pre>
+</span>
+<form id="form-GETapi-paymentCategoryChild" data-method="GET"
+      data-path="api/paymentCategoryChild"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-paymentCategoryChild', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-paymentCategoryChild"
+                    onclick="tryItOut('GETapi-paymentCategoryChild');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-paymentCategoryChild"
+                    onclick="cancelTryOut('GETapi-paymentCategoryChild');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-paymentCategoryChild" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/paymentCategoryChild</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="GETapi-paymentCategoryChild"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="GETapi-paymentCategoryChild"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>is_pay</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               name="is_pay"                data-endpoint="GETapi-paymentCategoryChild"
+               value="1"
+               data-component="body">
+    <br>
+<p>収支フラグ. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>parent_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+               name="parent_id"                data-endpoint="GETapi-paymentCategoryChild"
+               value="1"
+               data-component="body">
+    <br>
+<p>親カテゴリID. Example: <code>1</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-POSTapi-paymentCategoryChild">子カテゴリを登録</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-paymentCategoryChild">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8080/api/paymentCategoryChild" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"category_name\": \"ランチ代\",
+    \"parent_id\": 1
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8080/api/paymentCategoryChild"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "category_name": "ランチ代",
+    "parent_id": 1
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-paymentCategoryChild">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 54
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;childId&quot;: &quot;27039e6e-ad1a-438e-8743-e3b6f12d9024&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-paymentCategoryChild" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-paymentCategoryChild"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-paymentCategoryChild" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-paymentCategoryChild" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-paymentCategoryChild"></code></pre>
+</span>
+<form id="form-POSTapi-paymentCategoryChild" data-method="POST"
+      data-path="api/paymentCategoryChild"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-paymentCategoryChild', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-paymentCategoryChild"
+                    onclick="tryItOut('POSTapi-paymentCategoryChild');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-paymentCategoryChild"
+                    onclick="cancelTryOut('POSTapi-paymentCategoryChild');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-paymentCategoryChild" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/paymentCategoryChild</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="POSTapi-paymentCategoryChild"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="POSTapi-paymentCategoryChild"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>category_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="category_name"                data-endpoint="POSTapi-paymentCategoryChild"
+               value="ランチ代"
+               data-component="body">
+    <br>
+<p>子カテゴリ名. Example: <code>ランチ代</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>parent_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="parent_id"                data-endpoint="POSTapi-paymentCategoryChild"
+               value="1"
+               data-component="body">
+    <br>
+<p>親カテゴリID. Example: <code>1</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-PUTapi-paymentCategoryChild--id-">子カテゴリ更新API（未作成）</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-paymentCategoryChild--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost:8080/api/paymentCategoryChild/optio" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8080/api/paymentCategoryChild/optio"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-paymentCategoryChild--id-">
+</span>
+<span id="execution-results-PUTapi-paymentCategoryChild--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-paymentCategoryChild--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-paymentCategoryChild--id-" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-paymentCategoryChild--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-paymentCategoryChild--id-"></code></pre>
+</span>
+<form id="form-PUTapi-paymentCategoryChild--id-" data-method="PUT"
+      data-path="api/paymentCategoryChild/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-paymentCategoryChild--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-paymentCategoryChild--id-"
+                    onclick="tryItOut('PUTapi-paymentCategoryChild--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-paymentCategoryChild--id-"
+                    onclick="cancelTryOut('PUTapi-paymentCategoryChild--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-paymentCategoryChild--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/paymentCategoryChild/{id}</code></b>
+        </p>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/paymentCategoryChild/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="PUTapi-paymentCategoryChild--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="PUTapi-paymentCategoryChild--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="id"                data-endpoint="PUTapi-paymentCategoryChild--id-"
+               value="optio"
+               data-component="url">
+    <br>
+<p>The ID of the paymentCategoryChild. Example: <code>optio</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-DELETEapi-paymentCategoryChild--id-">子カテゴリ削除API（未作成）</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-paymentCategoryChild--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost:8080/api/paymentCategoryChild/iure" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8080/api/paymentCategoryChild/iure"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-paymentCategoryChild--id-">
+</span>
+<span id="execution-results-DELETEapi-paymentCategoryChild--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-paymentCategoryChild--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-paymentCategoryChild--id-" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-paymentCategoryChild--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-paymentCategoryChild--id-"></code></pre>
+</span>
+<form id="form-DELETEapi-paymentCategoryChild--id-" data-method="DELETE"
+      data-path="api/paymentCategoryChild/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-paymentCategoryChild--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-paymentCategoryChild--id-"
+                    onclick="tryItOut('DELETEapi-paymentCategoryChild--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-paymentCategoryChild--id-"
+                    onclick="cancelTryOut('DELETEapi-paymentCategoryChild--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-paymentCategoryChild--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/paymentCategoryChild/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="DELETEapi-paymentCategoryChild--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="DELETEapi-paymentCategoryChild--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="id"                data-endpoint="DELETEapi-paymentCategoryChild--id-"
+               value="iure"
+               data-component="url">
+    <br>
+<p>The ID of the paymentCategoryChild. Example: <code>iure</code></p>
+            </div>
+                    </form>
+
+            
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                                        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>

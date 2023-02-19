@@ -1,0 +1,557 @@
+openapi: 3.0.3
+info:
+  title: 家計簿アプリhabi
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost:8080'
+paths:
+  /api/payment:
+    get:
+      summary: 収支一覧を取得
+      operationId: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    paymentId: 0ddc8f57-194c-4ed6-8857-6a1bde8e221b
+                    parentId: '2'
+                    categoryName: 趣味
+                    childId: null
+                    paymentDate: '2023-02-16'
+                    amount: '20.00'
+                    isPay: 1
+                  -
+                    paymentId: 16952f5e-3f86-4b46-998c-6eb5f8b408fe
+                    parentId: '2'
+                    categoryName: 趣味
+                    childId: '4'
+                    paymentDate: '2023-02-10'
+                    amount: '1000.00'
+                    isPay: 1
+                  -
+                    paymentId: '4'
+                    parentId: '2'
+                    categoryName: 趣味
+                    childId: '4'
+                    paymentDate: '2023-02-21'
+                    amount: '4200.00'
+                    isPay: 1
+                  -
+                    paymentId: 445fb39d-f03d-4c35-ae7b-18f9d7b4483b
+                    parentId: '1'
+                    categoryName: 食費
+                    childId: null
+                    paymentDate: '2023-02-25'
+                    amount: '1000.00'
+                    isPay: 1
+                  -
+                    paymentId: 77e7fe80-356c-47a0-857f-ee5e3f15d275
+                    parentId: '3'
+                    categoryName: 日用品
+                    childId: null
+                    paymentDate: '2023-02-08'
+                    amount: '300.00'
+                    isPay: 1
+                  -
+                    paymentId: 964c5520-37b7-4dd5-8c2c-90e9eaf6e6d4
+                    parentId: '1'
+                    categoryName: 食費
+                    childId: '2'
+                    paymentDate: '2023-02-02'
+                    amount: '1200.00'
+                    isPay: 1
+                  -
+                    paymentId: 9f0071f5-00d2-431d-8a4b-62bc6316d454
+                    parentId: '1'
+                    categoryName: 食費
+                    childId: '1'
+                    paymentDate: '2023-02-08'
+                    amount: '100.00'
+                    isPay: 1
+                  -
+                    paymentId: c6344677-c5f8-4398-b910-b7ec5835400b
+                    parentId: '2'
+                    categoryName: 趣味
+                    childId: null
+                    paymentDate: '2023-02-16'
+                    amount: '400.00'
+                    isPay: 1
+                  -
+                    paymentId: f9c5d861-1dd0-46ce-8519-73e790b4d5d3
+                    parentId: null
+                    categoryName: null
+                    childId: null
+                    paymentDate: '2023-02-14'
+                    amount: '666.00'
+                    isPay: 1
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                is_pay:
+                  type: integer
+                  description: 収支フラグ.
+                  example: 1
+                date_from:
+                  type: string
+                  description: '取得期間_開始日. Must be a valid date. This field is required when <code>date_to</code> is present.'
+                  example: '2023-02-01'
+                date_to:
+                  type: string
+                  description: '取得期間_終了日. Must be a valid date. This field is required when <code>date_from</code> is present.'
+                  example: '2023-02-28'
+    post:
+      summary: 収支を登録(配列で渡されたものを洗い替えで登録)
+      operationId: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: システムエラーが発生しました。
+                properties:
+                  error:
+                    type: string
+                    example: システムエラーが発生しました。
+      tags:
+        - Endpoints
+  /api/paymentCategoryParent:
+    get:
+      summary: 親カテゴリ一覧を取得
+      operationId: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    parentId: '1'
+                    categoryName: 食費
+                    isPay: 1
+                    userId: '1'
+                    isDelete: 0
+                    createdAt: '2023-02-06 16:48:28'
+                    updatedAt: '2023-02-06 16:48:28'
+                  -
+                    parentId: '2'
+                    categoryName: 趣味
+                    isPay: 1
+                    userId: '1'
+                    isDelete: 0
+                    createdAt: '2023-02-06 16:48:28'
+                    updatedAt: '2023-02-06 16:48:28'
+                  -
+                    parentId: '3'
+                    categoryName: 日用品
+                    isPay: 1
+                    userId: '1'
+                    isDelete: 0
+                    createdAt: '2023-02-06 16:48:28'
+                    updatedAt: '2023-02-06 16:48:28'
+                  -
+                    parentId: 61503315-7d7d-4a69-865d-903e0ca2d081
+                    categoryName: 新規親カテゴリ
+                    isPay: 1
+                    userId: '1'
+                    isDelete: 0
+                    createdAt: '2023-02-08 15:43:59'
+                    updatedAt: '2023-02-08 15:43:59'
+                  -
+                    parentId: 721769c8-d686-4d2b-a015-7299b29cd805
+                    categoryName: 新規親カテゴリ
+                    isPay: 1
+                    userId: '1'
+                    isDelete: 0
+                    createdAt: '2023-02-08 18:56:58'
+                    updatedAt: '2023-02-08 18:56:58'
+                  -
+                    parentId: 7b4a43aa-ea38-4cc0-b895-4dca9168a008
+                    categoryName: 新規親カテゴリ
+                    isPay: 1
+                    userId: '1'
+                    isDelete: 0
+                    createdAt: '2023-02-08 15:41:39'
+                    updatedAt: '2023-02-08 15:41:39'
+                  -
+                    parentId: 977525b8-2d9d-47a5-8f35-66a2fae66c8d
+                    categoryName: 新規親カテゴリ
+                    isPay: 1
+                    userId: '1'
+                    isDelete: 0
+                    createdAt: null
+                    updatedAt: null
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                is_pay:
+                  type: integer
+                  description: 収支フラグ.
+                  example: 1
+    post:
+      summary: 親カテゴリを登録
+      operationId: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  parentId: 85f881ea-4785-48ec-af80-ea344aa3148d
+                properties:
+                  parentId:
+                    type: string
+                    example: 85f881ea-4785-48ec-af80-ea344aa3148d
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                is_pay:
+                  type: integer
+                  description: 収支フラグ.
+                  example: 1
+                category_name:
+                  type: string
+                  description: 親カテゴリ名.
+                  example: 食費
+                user_id:
+                  type: string
+                  description: ユーザID.
+                  example: 1
+              required:
+                - is_pay
+                - category_name
+                - user_id
+  '/api/paymentCategoryParent/{id}':
+    put:
+      summary: 親カテゴリ更新API（未作成）
+      operationId: API
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+    delete:
+      summary: 親カテゴリ削除API（未作成）
+      operationId: API
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the paymentCategoryParent.'
+        example: illum
+        required: true
+        schema:
+          type: string
+  /api/paymentCategoryChild:
+    get:
+      summary: 子カテゴリ一覧を取得
+      operationId: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    childId: '1'
+                    categoryName: 食材
+                    parentId: '1'
+                    isDelete: 0
+                    createdAt: '2023-02-06 16:48:28'
+                    updatedAt: '2023-02-06 16:48:28'
+                    isPay: 1
+                  -
+                    childId: '2'
+                    categoryName: 外食
+                    parentId: '1'
+                    isDelete: 0
+                    createdAt: '2023-02-06 16:48:28'
+                    updatedAt: '2023-02-06 16:48:28'
+                    isPay: 1
+                  -
+                    childId: '3'
+                    categoryName: おやつ
+                    parentId: '1'
+                    isDelete: 0
+                    createdAt: '2023-02-06 16:48:28'
+                    updatedAt: '2023-02-06 16:48:28'
+                    isPay: 1
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                is_pay:
+                  type: integer
+                  description: 収支フラグ.
+                  example: 1
+                parent_id:
+                  type: string
+                  description: 親カテゴリID.
+                  example: 1
+    post:
+      summary: 子カテゴリを登録
+      operationId: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  childId: 27039e6e-ad1a-438e-8743-e3b6f12d9024
+                properties:
+                  childId:
+                    type: string
+                    example: 27039e6e-ad1a-438e-8743-e3b6f12d9024
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category_name:
+                  type: string
+                  description: 子カテゴリ名.
+                  example: ランチ代
+                parent_id:
+                  type: string
+                  description: 親カテゴリID.
+                  example: 1
+              required:
+                - category_name
+                - parent_id
+  '/api/paymentCategoryChild/{id}':
+    put:
+      summary: 子カテゴリ更新API（未作成）
+      operationId: API
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+    delete:
+      summary: 子カテゴリ削除API（未作成）
+      operationId: API
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the paymentCategoryChild.'
+        example: optio
+        required: true
+        schema:
+          type: string
+tags:
+  -
+    name: Endpoints
+    description: ''

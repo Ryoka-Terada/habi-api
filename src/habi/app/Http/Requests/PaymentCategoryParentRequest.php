@@ -32,4 +32,38 @@ class PaymentCategoryParentRequest extends BaseRequest
       'user_id' => ['required'],
     ];
   }
+
+  /**
+   * GET時のパラメータ例
+   */
+  public function getApiParameters()
+  {
+    return [
+      'is_pay' => [
+        'description' => '収支フラグ',
+        'example' => 1
+      ]
+    ];
+  }
+
+  /**
+   * POST時のパラメータ例
+   */
+  public function postApiParameters()
+  {
+    return [
+      'is_pay' => [
+        'description' => '収支フラグ',
+        'example' => 1
+      ],
+      'category_name' => [
+        'description' => '親カテゴリ名',
+        'example' => '食費'
+      ],
+      'user_id' => [
+        'description' => 'ユーザID',
+        'example' => 1
+      ],
+    ];
+  }
 }
