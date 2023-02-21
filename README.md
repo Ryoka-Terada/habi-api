@@ -55,3 +55,6 @@ https://github.com/Ryoka-Terada/habi-api/blob/master/src/habi/public/docs/index.
 ※Docker起動後は以下URLで確認できる。<br />
 http://localhost:8080/docs/
 
+こんな感じで生成される。<br />
+![API詳細設計例](https://user-images.githubusercontent.com/77401198/220426591-f7e3265f-b752-4e0b-835b-fede94facfcf.png)
+
