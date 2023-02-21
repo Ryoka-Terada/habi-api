@@ -1,11 +1,11 @@
 # habi-api
 家計簿アプリのバックエンドのリポジトリです。
 
-## 言語とフレームワーク
+# 言語とフレームワーク
 - PHP 8.0.2
 - Laravel Framework 8.83.23
 
-## 共通処理
+# 共通処理
 
 <h2>src/habi/app/Http/Middleware/CaseConverter.php</h2>
 https://github.com/Ryoka-Terada/habi-api/blob/master/src/habi/app/Http/Middleware/CaseConverter.php<br />
@@ -30,7 +30,7 @@ https://github.com/Ryoka-Terada/habi-api/blob/master/src/habi/app/Http/Requests/
   </p>
 </div>
 
-
+# API
 ## API一覧
 
 |  API名  |  エンドポイント  | メソッド | 説明 |
@@ -48,9 +48,10 @@ https://github.com/Ryoka-Terada/habi-api/blob/master/src/habi/app/Http/Requests/
 
 ## API詳細設計
 
-Scribe(https://scribe.knuckles.wtf/)で作成。<br />
+Scribeで作成。<br />
+https://scribe.knuckles.wtf/<br />
 このリポジトリをローカルに落とした後、以下ファイルをブラウザで開くと確認可能。<br />
 https://github.com/Ryoka-Terada/habi-api/blob/master/src/habi/public/docs/index.html<br />
-※Dockerまで環境構築をした後は以下URLで確認できる。<br />
+※Docker起動後は以下URLで確認できる。<br />
 http://localhost:8080/docs/
 

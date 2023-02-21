@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ParentCategoryController;
@@ -20,6 +19,6 @@ use App\Http\Controllers\ChildCategoryController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //   return $request->user();
 // });
-Route::resource('payment', PaymentController::class)->except(['create', 'edit', 'update', 'show', 'destroy']);
-Route::resource('paymentCategoryParent', ParentCategoryController::class)->except(['create', 'edit', 'show']);
-Route::resource('paymentCategoryChild', ChildCategoryController::class)->except(['create', 'edit', 'show']);
+Route::resource('payments', PaymentController::class)->except(['create', 'edit', 'update', 'show', 'destroy']);
+Route::resource('paymentCategoryParents', ParentCategoryController::class)->except(['create', 'edit', 'show']);
+Route::resource('paymentCategoryChildren', ChildCategoryController::class)->except(['create', 'edit', 'show']);
