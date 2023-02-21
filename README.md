@@ -35,16 +35,16 @@ https://github.com/Ryoka-Terada/habi-api/blob/master/src/habi/app/Http/Requests/
 
 |  API名  |  エンドポイント  | メソッド | 説明 |
 | ---- | ---- | ---- | ---- |
-|  収支登録API  |  api/payment  |  POST  |  収支リストを１日単位で登録する。洗替で登録。  |
-|  収支取得API  |  api/payment  |  GET  |  収支リストをパラメータで指定された日付の範囲で取得する。  |
-|  親カテゴリ登録API  |  api/parent  |  POST  |  親カテゴリを登録する。  |
-|  親カテゴリ更新API  |  api/parent  |  PUT  |  親カテゴリを更新する。  |
-|  親カテゴリ削除API  |  api/parent  |  DELETE  |  親カテゴリを削除する。  |
-|  親カテゴリ取得API  |  api/parent  |  GET  |  親カテゴリ一覧を取得する。  |
-|  子カテゴリ登録API  |  api/child  |  POST  |  子カテゴリを登録する。  |
-|  子カテゴリ更新API  |  api/child  |  PUT  |  子カテゴリを更新する。  |
-|  子カテゴリ削除API  |  api/child  |  DELETE  |  子カテゴリを削除する。  |
-|  子カテゴリ取得API  |  api/child  |  GET  |  パラメータで渡された親カテゴリに属する子カテゴリ一覧を取得する。  |
+|  収支登録API  |  api/payments  |  POST  |  収支リストを１日単位で登録する。洗替で登録。  |
+|  収支取得API  |  api/payments  |  GET  |  収支リストをパラメータで指定された日付の範囲で取得する。  |
+|  親カテゴリ登録API  |  api/paymentCategoryParents  |  POST  |  親カテゴリを登録する。  |
+|  親カテゴリ更新API  |  api/paymentCategoryParents  |  PUT  |  親カテゴリを更新する。  |
+|  親カテゴリ削除API  |  api/paymentCategoryParents  |  DELETE  |  親カテゴリを削除する。  |
+|  親カテゴリ取得API  |  api/paymentCategoryParents  |  GET  |  親カテゴリ一覧を取得する。  |
+|  子カテゴリ登録API  |  api/paymentCategoryChildren  |  POST  |  子カテゴリを登録する。  |
+|  子カテゴリ更新API  |  api/paymentCategoryChildren  |  PUT  |  子カテゴリを更新する。  |
+|  子カテゴリ削除API  |  api/paymentCategoryChildren  |  DELETE  |  子カテゴリを削除する。  |
+|  子カテゴリ取得API  |  api/paymentCategoryChildren  |  GET  |  パラメータで渡された親カテゴリに属する子カテゴリ一覧を取得する。  |
 
 ## API詳細設計
 
@@ -56,5 +56,5 @@ https://github.com/Ryoka-Terada/habi-api/blob/master/src/habi/public/docs/index.
 http://localhost:8080/docs/
 
 こんな感じで生成される。<br />
-![API詳細設計例](https://user-images.githubusercontent.com/77401198/220426591-f7e3265f-b752-4e0b-835b-fede94facfcf.png)
+![API詳細設計例](https://user-images.githubusercontent.com/77401198/220427712-175221d9-3e27-425b-b80d-e2b65546d29a.png)
 

@@ -4,7 +4,7 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/payment
+    uri: api/payments
     metadata:
       groupName: Endpoints
       groupDescription: ''
@@ -69,7 +69,7 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/payment
+    uri: api/payments
     metadata:
       groupName: Endpoints
       groupDescription: ''
@@ -110,7 +110,7 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/paymentCategoryParent
+    uri: api/paymentCategoryParents
     metadata:
       groupName: Endpoints
       groupDescription: ''
@@ -159,7 +159,7 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/paymentCategoryParent
+    uri: api/paymentCategoryParents
     metadata:
       groupName: Endpoints
       groupDescription: ''
@@ -206,7 +206,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"parentId":"85f881ea-4785-48ec-af80-ea344aa3148d"}'
+        content: '{"parentId":"93e56807-8910-4ed9-b4be-faad72ed0531"}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -225,7 +225,7 @@ endpoints:
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/paymentCategoryParent/{id}'
+    uri: 'api/paymentCategoryParents/{id}'
     metadata:
       groupName: Endpoints
       groupDescription: ''
@@ -243,11 +243,11 @@ endpoints:
         name: id
         description: 'The ID of the paymentCategoryParent.'
         required: true
-        example: illum
+        example: incidunt
         type: string
         custom: []
     cleanUrlParameters:
-      id: illum
+      id: incidunt
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -263,7 +263,7 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/paymentCategoryParent/{id}'
+    uri: 'api/paymentCategoryParents/{id}'
     metadata:
       groupName: Endpoints
       groupDescription: ''
@@ -281,11 +281,11 @@ endpoints:
         name: id
         description: 'The ID of the paymentCategoryParent.'
         required: true
-        example: quas
+        example: sint
         type: string
         custom: []
     cleanUrlParameters:
-      id: quas
+      id: sint
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -301,7 +301,7 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: api/paymentCategoryChild
+    uri: api/paymentCategoryChildren
     metadata:
       groupName: Endpoints
       groupDescription: ''
@@ -358,7 +358,7 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/paymentCategoryChild
+    uri: api/paymentCategoryChildren
     metadata:
       groupName: Endpoints
       groupDescription: ''
@@ -397,7 +397,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"childId":"27039e6e-ad1a-438e-8743-e3b6f12d9024"}'
+        content: '{"childId":"d26c2c16-60f8-4c69-bb19-df75f402e6f4"}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -416,7 +416,7 @@ endpoints:
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/paymentCategoryChild/{id}'
+    uri: 'api/paymentCategoryChildren/{id}'
     metadata:
       groupName: Endpoints
       groupDescription: ''
@@ -434,11 +434,11 @@ endpoints:
         name: id
         description: 'The ID of the paymentCategoryChild.'
         required: true
-        example: optio
+        example: reiciendis
         type: string
         custom: []
     cleanUrlParameters:
-      id: optio
+      id: reiciendis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -454,7 +454,7 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/paymentCategoryChild/{id}'
+    uri: 'api/paymentCategoryChildren/{id}'
     metadata:
       groupName: Endpoints
       groupDescription: ''
@@ -472,11 +472,11 @@ endpoints:
         name: id
         description: 'The ID of the paymentCategoryChild.'
         required: true
-        example: iure
+        example: non
         type: string
         custom: []
     cleanUrlParameters:
-      id: iure
+      id: non
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

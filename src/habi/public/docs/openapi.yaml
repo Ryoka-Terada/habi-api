@@ -7,7 +7,7 @@ servers:
   -
     url: 'http://localhost:8080'
 paths:
-  /api/payment:
+  /api/payments:
     get:
       summary: 収支一覧を取得
       operationId: ''
@@ -164,7 +164,7 @@ paths:
                     example: システムエラーが発生しました。
       tags:
         - Endpoints
-  /api/paymentCategoryParent:
+  /api/paymentCategoryParents:
     get:
       summary: 親カテゴリ一覧を取得
       operationId: ''
@@ -290,11 +290,11 @@ paths:
               schema:
                 type: object
                 example:
-                  parentId: 85f881ea-4785-48ec-af80-ea344aa3148d
+                  parentId: 93e56807-8910-4ed9-b4be-faad72ed0531
                 properties:
                   parentId:
                     type: string
-                    example: 85f881ea-4785-48ec-af80-ea344aa3148d
+                    example: 93e56807-8910-4ed9-b4be-faad72ed0531
       tags:
         - Endpoints
       requestBody:
@@ -320,7 +320,7 @@ paths:
                 - is_pay
                 - category_name
                 - user_id
-  '/api/paymentCategoryParent/{id}':
+  '/api/paymentCategoryParents/{id}':
     put:
       summary: 親カテゴリ更新API（未作成）
       operationId: API
@@ -370,11 +370,11 @@ paths:
         in: path
         name: id
         description: 'The ID of the paymentCategoryParent.'
-        example: illum
+        example: incidunt
         required: true
         schema:
           type: string
-  /api/paymentCategoryChild:
+  /api/paymentCategoryChildren:
     get:
       summary: 子カテゴリ一覧を取得
       operationId: ''
@@ -472,11 +472,11 @@ paths:
               schema:
                 type: object
                 example:
-                  childId: 27039e6e-ad1a-438e-8743-e3b6f12d9024
+                  childId: d26c2c16-60f8-4c69-bb19-df75f402e6f4
                 properties:
                   childId:
                     type: string
-                    example: 27039e6e-ad1a-438e-8743-e3b6f12d9024
+                    example: d26c2c16-60f8-4c69-bb19-df75f402e6f4
       tags:
         - Endpoints
       requestBody:
@@ -497,7 +497,7 @@ paths:
               required:
                 - category_name
                 - parent_id
-  '/api/paymentCategoryChild/{id}':
+  '/api/paymentCategoryChildren/{id}':
     put:
       summary: 子カテゴリ更新API（未作成）
       operationId: API
@@ -547,7 +547,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the paymentCategoryChild.'
-        example: optio
+        example: reiciendis
         required: true
         schema:
           type: string

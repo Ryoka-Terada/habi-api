@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "\u5bb6\u8a08\u7c3f\u30a2\u30d7\u30eahabi",
-        "_postman_id": "89b20890-6b98-436c-98dd-afb7743a85a2",
+        "_postman_id": "0cbd57c9-e7ee-4153-bf67-3b38bf49d69e",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -24,9 +24,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/payment",
+                            "path": "api\/payments",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/payment"
+                            "raw": "{{baseUrl}}\/api\/payments"
                         },
                         "method": "GET",
                         "header": [
@@ -80,9 +80,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/payment",
+                            "path": "api\/payments",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/payment"
+                            "raw": "{{baseUrl}}\/api\/payments"
                         },
                         "method": "POST",
                         "header": [
@@ -133,9 +133,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/paymentCategoryParent",
+                            "path": "api\/paymentCategoryParents",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/paymentCategoryParent"
+                            "raw": "{{baseUrl}}\/api\/paymentCategoryParents"
                         },
                         "method": "GET",
                         "header": [
@@ -189,9 +189,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/paymentCategoryParent",
+                            "path": "api\/paymentCategoryParents",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/paymentCategoryParent"
+                            "raw": "{{baseUrl}}\/api\/paymentCategoryParents"
                         },
                         "method": "POST",
                         "header": [
@@ -235,7 +235,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"parentId\":\"85f881ea-4785-48ec-af80-ea344aa3148d\"}",
+                            "body": "{\"parentId\":\"93e56807-8910-4ed9-b4be-faad72ed0531\"}",
                             "name": ""
                         }
                     ]
@@ -245,14 +245,14 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/paymentCategoryParent\/:id",
+                            "path": "api\/paymentCategoryParents\/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/paymentCategoryParent\/:id",
+                            "raw": "{{baseUrl}}\/api\/paymentCategoryParents\/:id",
                             "variable": [
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "illum",
+                                    "value": "incidunt",
                                     "description": "The ID of the paymentCategoryParent."
                                 }
                             ]
@@ -278,14 +278,14 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/paymentCategoryParent\/:id",
+                            "path": "api\/paymentCategoryParents\/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/paymentCategoryParent\/:id",
+                            "raw": "{{baseUrl}}\/api\/paymentCategoryParents\/:id",
                             "variable": [
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quas",
+                                    "value": "sint",
                                     "description": "The ID of the paymentCategoryParent."
                                 }
                             ]
@@ -311,9 +311,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/paymentCategoryChild",
+                            "path": "api\/paymentCategoryChildren",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/paymentCategoryChild"
+                            "raw": "{{baseUrl}}\/api\/paymentCategoryChildren"
                         },
                         "method": "GET",
                         "header": [
@@ -367,9 +367,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/paymentCategoryChild",
+                            "path": "api\/paymentCategoryChildren",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/paymentCategoryChild"
+                            "raw": "{{baseUrl}}\/api\/paymentCategoryChildren"
                         },
                         "method": "POST",
                         "header": [
@@ -413,7 +413,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"childId\":\"27039e6e-ad1a-438e-8743-e3b6f12d9024\"}",
+                            "body": "{\"childId\":\"d26c2c16-60f8-4c69-bb19-df75f402e6f4\"}",
                             "name": ""
                         }
                     ]
@@ -423,14 +423,14 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/paymentCategoryChild\/:id",
+                            "path": "api\/paymentCategoryChildren\/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/paymentCategoryChild\/:id",
+                            "raw": "{{baseUrl}}\/api\/paymentCategoryChildren\/:id",
                             "variable": [
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "optio",
+                                    "value": "reiciendis",
                                     "description": "The ID of the paymentCategoryChild."
                                 }
                             ]
@@ -456,14 +456,14 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/paymentCategoryChild\/:id",
+                            "path": "api\/paymentCategoryChildren\/:id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/paymentCategoryChild\/:id",
+                            "raw": "{{baseUrl}}\/api\/paymentCategoryChildren\/:id",
                             "variable": [
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "iure",
+                                    "value": "non",
                                     "description": "The ID of the paymentCategoryChild."
                                 }
                             ]
